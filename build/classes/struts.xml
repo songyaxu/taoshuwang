@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="taoshuwang" extends="struts-default">
+		
+		<action name="detailPBook" class="detailPBookAction">
+			<result name ="detailSuc" type="dispatcher">/single.jsp</result>
+			<result name="success" type="dispatcher">/book/detail.jsp</result>
+		</action>
+		<action name="IntoCartAction" class="IntoCart">
+			<result name="success" type="dispatcher">/cart.jsp</result>
+		</action>
+		<action name="RemoveCartAction" class="RemoveCart">
+			<result name="success" type="dispatcher">/cart.jsp</result>
+			<result name="error" type="dispatcher">/error.jsp</result>
+		</action>
+		<action name="searchBook" class="SearchBookAction">
+			<result name="success" type="dispatcher">/searchresult.jsp</result>
+		</action>
+		<action name="LoadProduct" class="LoadProductAction">
+			<result name="success" type="dispatcher">/index.jsp</result>
+		</action>
+		<action name="searchTypeBook" class="SearchBookByTypeAction">
+			<result name="success" type="dispatcher">/typeresult.jsp</result>
+			<result name="findsuccess" type="dispatcher">/typeresult.jsp</result>
+		</action>
+		<action name="userService" class="userAction">
+			<result name="success" type="redirect">/LoadProduct.action</result>
+			<result name="input" type="redirect">/login.jsp</result>
+			<result name="userUpdate" type="dispatcher">/info/changePwd.jsp</result>
+			<result name="updateSuc" type="dispatcher">/info.jsp</result>
+			<result name="loginout" type="redirect">LoadProduct.action</result>
+			<result name="forgetsuccess" type="dispatcher">/forgetforward.jsp</result>
+			<result name="forgetfail" type="dispatcher">/error.jsp</result>
+			<result name="error" type="dispatcher">/error.jsp</result>
+			<result name="modifySuc" type="dispatcher">/login.jsp</result>
+		</action>
+
+		<action name="adminService" class="adminServiceAction">
+			<result name="loginSuc" type="redirect">/info/adminInfo.jsp</result>
+			<result name="input" type="redirect">/adminLogin.jsp</result>
+		</action>
+
+		<action name="saveUser" class="saveUserAction">
+			<result name="success" type="redirect">
+				<param name="actionName">listUser.action</param>
+			</result>
+			<result name="input">/register.jsp</result>
+			<result name="regSuc" type="dispatcher">/info.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- 用户登录后才能访问的action -->
+	<package name="authority" extends="struts-default">
+		<interceptors>
+			<interceptor name="authority"
+				class="com.xujie.interceptor.AuthorityInterceptor" />
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefault"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+
+		<!-- order -->
+		<action name="saveOrder" class="saveOrderAction">
+			<result name="success" type="dispatcher">/attention.jsp</result>
+			<result name="addfail" type="dispatcher">/error.jsp</result>
+			<result name="simplesuc" type="dispatcher">/attention.jsp</result>
+		</action>
+		<action name="orderInfo" class="orderServiceAction">
+			<result name="success" type="dispatcher">/orderinfo.jsp</result>
+		</action>
+		<action name="payOrder" class="payOrderAction">
+			<result name="success" type="dispatcher">/attention.jsp</result>
+			<result name="closesuc" type="dispatcher">/attention.jsp</result>
+			<result name="closesucc" type="dispatcher">/attention.jsp</result>
+			<result name="recesuc" type="dispatcher">/attention.jsp</result>
+		</action>
+		<action name="ListUAddressAction" class="ListUserAddress">
+			<result name="success" type="dispatcher">/addressinfo.jsp</result>
+		</action>
+		<action name="AddAddressAction" class="AddAddress">
+			<result name="success" type="dispatcher">ListUAddressAction.action</result>
+			<result name="input" type="redirect">/addaddress.jsp</result>
+		</action>
+		<action name="updateAddressAction" class="updateAddress">
+			<result name="success" type="dispatcher">ListUAddressAction.action</result>
+		</action>
+		<action name="locationAddressAction" class="locationAddress">
+			<result name="success" type="dispatcher">/updateaddress.jsp</result>
+		</action>
+		<action name="updateUserByuser" class="updatePUserAction">
+			<result name="success" type="dispatcher">/info.jsp</result>
+		</action>
+		<!-- Order -->
+		<action name="ConfirmOrderAction" class="ConfirmOrder">
+			<result name="success" type="dispatcher">/orderconfirm.jsp</result>
+			<result name="error" type="dispatcher">/error.jsp</result>
+		</action>
+		<action name="ConfirmSimple" class="ConfirmSimpleAction">
+			<result name="success" type="dispatcher">/confirmsimple.jsp</result>
+		</action>
+		<action name="DetailOrder" class="detailPOrderAction">
+			<result name="detailsuc" type="dispatcher">/orderdetail.jsp</result>
+		</action>
+	</package>
+
+	<!-- 管理员后才能访问的action  -->
+	<package name="authorityAdmin" extends="struts-default">
+		<interceptors>
+			<interceptor name="authorityAdmin" class="com.xujie.interceptor.AdminInterceptor" />
+			<interceptor-stack name="mydefaultAdmin">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authorityAdmin" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefaultAdmin"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login">/adminLogin.jsp</result>
+		</global-results>
+
+		<!-- user -->
+		<action name="deleteUser" class="removeUserAction">
+			<result name="success" type="redirect">listUser.action</result>
+		</action>
+		<action name="listUser" class="listUserAction">
+			<result name="success" >/user/list.jsp</result>
+		</action>
+		<action name="updateUser" class="updateUserAction">
+			<result name="success" type="redirect">listUser.action</result>
+		</action>
+		<action name="updatePUser" class="updatePUserAction">
+			<result name="success">/user/update.jsp</result>
+		</action>
+		<!-- admin -->
+		<action name="saveAdmin" class="saveAdminAction">
+			<result name="success" type="redirect">/LoadProduct.action</result>
+		</action>
+
+		<!-- taoshuwang -->
+		<action name="saveBook" class="saveBookAction">
+			<result name="success" type="redirect">listBook.action</result>
+		</action>
+		
+		<action name="listBook" class="listBookAction">
+			<result name="success">/book/list.jsp</result>
+		</action>
+
+		<action name="deleteBook" class="removeBookAction">
+			<result name="success" type="redirect">listBook.action</result>
+		</action>
+
+		<action name="updatePBook" class="updatePBookAction">
+			<result name="success">/book/update.jsp</result>
+		</action>
+		
+		<action name="updateBook" class="updateBookAction">
+			<result name="success" type="redirect">listBook.action</result>
+		</action>
+		
+		<!-- order -->
+		<action name="listOrder" class="listOrderAction">
+			<result name="success" type="dispatcher">/order/list.jsp</result>
+		</action>
+		<action name="listOrderByState" class="listOrderByStateAction">
+			<result name="success" type="dispatcher">/order/list.jsp</result>
+		</action>
+		<action name="updatePOrder" class="updatePOrderAction">
+			<result name="success" type="dispatcher">/order/update.jsp</result>
+		</action>
+		<action name="detailPOrder" class="detailPOrderAction">
+			<result name="success" type="dispatcher">/order/detail.jsp</result>
+		</action>
+		<action name="orderAdminService" class="orderAdminServiceAction">
+			<result name="closeorder" type="dispatcher">/admin/result.jsp</result>
+			<result name="sendsuccess" type="dispatcher">/admin/result.jsp</result>
+			<result name="refundok" type="dispatcher">/admin/result.jsp</result>
+			<result name="error" type="dispatcher">/admin/result.jsp</result>
+		</action>  
+	</package>
+
+</struts>

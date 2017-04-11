@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xujie.entity.Order" table="orders">
+		<id name="orderid" column="Oid" type="int">
+			<generator class="identity"> <!-- 主键id的生成方式为自增 -->
+			</generator>
+		</id>
+		<property name="bookid" column="Bid" type="int"></property>
+		<property name="bookname" column="Bname" type="string"></property>
+		<property name="userid" column="Uid" type="int"></property>
+		<property name="username" column="Uname" type="string"></property>
+		<property name="addressid" column="Aid" type="int"></property>
+		<property name="commentid" column="Cid" type="int"></property>
+		<property name="passport" column="Opassport" type="string"></property>
+		<property name="passportno" column="Opassportno" type="string"></property>
+		<property name="price" column="Oprice" type="double"></property>
+		<property name="num" column="Onum" type="int"></property>
+		<property name="starttime" column="OstartTime" type="date"></property>
+		<property name="paytime" column="OpayTime" type="date"></property>
+		<property name="endtime" column="OendTime" type="date"></property>
+		<property name="message" column="Omessage" type="string"></property>
+		<property name="state" column="Ostate" type="int"></property>
+	</class>
+</hibernate-mapping>

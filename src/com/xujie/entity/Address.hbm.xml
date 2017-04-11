@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xujie.entity.Address" table="address">
+		<id name="addressid" column="Aid" type="int">
+			<generator class="identity"> <!-- 主键id的生成方式为自增 -->
+			</generator>
+		</id>
+		<property name="userid" column="Uid" type="int"></property>
+		<property name="zipcode" column="AzipCode" type="string"></property>
+		<property name="phone" column="Aphone" type="string"></property>
+		<property name="area" column="Aarea" type="string"></property>
+		<property name="street" column="Astreet" type="string"></property>
+		<property name="addressdetail" column="AaddressDetail" type="string"></property>
+		<property name="receiver" column="Areceiver" type="string"></property>
+	</class>
+</hibernate-mapping>
+

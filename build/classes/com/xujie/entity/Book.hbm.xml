@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xujie.entity.Book" table="book">
+		<id name="bookid" column="Bid" type="int">
+			<generator class="identity"> <!-- 主键id的生成方式为自增 -->
+			</generator>
+		</id>
+		<property name="name" column="Bname" type="string"></property>
+		<property name="type" column="Btype" type="string"></property>
+		<property name="type2" column="Btype2" type="string"></property>
+		<property name="author" column="Bauthor" type="string"></property>
+		<property name="isbn" column="BISBN" type="string"></property>
+		<property name="recommend" column="Brecommend" type="double"></property>
+		<property name="press" column="Bpress" type="string"></property>
+		<property name="pubdate" column="BpubDate" type="string"></property>
+		<property name="sum" column="Bsum" type="int"></property>
+		<property name="sellsum" column="BsellSum" type="int"></property>
+		<property name="edition" column="Bedition" type="string"></property>
+		<property name="totalpages" column="BtotalPages" type="int"></property>
+		<property name="cover" column="Bcover" type="string"></property>
+		<property name="booksize" column="BbookSize" type="string"></property>
+		<property name="price" column="Bprice" type="double"></property>
+		<property name="content" column="Bcontent" type="string"></property>
+		<property name="catalog" column="Bcatalog" type="string"></property>
+	</class>
+</hibernate-mapping>

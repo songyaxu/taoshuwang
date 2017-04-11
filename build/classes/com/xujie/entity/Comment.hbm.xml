@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xujie.entity.Comment" table="comment">
+		<id name="commentid" column="Cid" type="int">
+			<generator class="identity"> <!-- 主键id的生成方式为自增 -->
+			</generator>
+		</id>
+		<property name="bookid" column="Bid" type="int"></property>
+		<property name="username" column="Username" type="string"></property>
+		<property name="picture" column="Cpicture" type="string"></property>
+		<property name="comment" column="Ccomment" type="string"></property>
+		<property name="time" column="Ctime" type="date"></property>
+	</class>
+</hibernate-mapping>
+
